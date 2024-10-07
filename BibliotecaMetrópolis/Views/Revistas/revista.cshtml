@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revistas</title>
+    <link href="~/Content/css/Revistas.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Revista</h2>
+        <form>
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" id="title" name="title" placeholder="Ingrese el título de la revista">
+                <div class="error" id="titleError"></div>
+            </div>
+            <div class="form-group">
+                <label for="publisher">Editorial</label>
+                <input type="text" id="publisher" name="publisher" placeholder="Ingrese la editorial">
+                <div class="error" id="publisherError"></div>
+            </div>
+            <div class="form-group">
+                <label for="publishDate">Fecha de Publicación</label>
+                <input type="date" id="publishDate" name="publishDate">
+                <div class="error" id="publishDateError"></div>
+            </div>
+            <div class="form-group">
+                <label for="issn">Número de serie</label>
+                <input type="text" id="issn" name="issn" placeholder="Ingrese el número de serie">
+                <div class="error" id="issnError"></div>
+            </div>
+            <div class="form-group">
+                <label for="genre">Género de revista</label>
+                <input type="text" id="genre" name="genre" placeholder="Ingrese el género de la revista">
+                <div class="error" id="genreError"></div>
+            </div>
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2024 Biblioteca Metrópolis
+    </footer>
+</body>
+</html>

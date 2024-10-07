@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Biblioteca </title>
+    <link href="~/Content/css/inicio.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("Registrar", "Libro")">Libros</a></li>
+                <li><a href="@Url.Action("enciclopedia", "Enciclopedia")">Enciclopedias</a></li>
+                <li><a href="@Url.Action("revista", "Revistas")">Revistas</a></li>
+                <li><a href="@Url.Action("Registro", "Tesis")">Tesis</a></li>
+                <li><a href="@Url.Action("discos", "DVD")">DVD'S</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>

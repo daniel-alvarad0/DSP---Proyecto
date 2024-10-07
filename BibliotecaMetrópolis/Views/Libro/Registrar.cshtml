@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/Libros.css" rel="stylesheet" />
+
+<div class="form-container">
+    <h2>Registrar Libro</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required />
+        </div>
+        <div class="form-group">
+            <label for="autor">Autor(es):</label>
+            <input type="text" id="autor" name="autor" required />
+        </div>
+        <div class="form-group">
+            <label for="anio">Año de Publicación:</label>
+            <input type="number" id="anio" name="anio" required />
+        </div>
+        <div class="form-group">
+            <label for="editorial">Casa Editorial:</label>
+            <input type="text" id="editorial" name="editorial" required />
+        </div>
+        <div class="form-group">
+            <label for="edicion">Número de Edición:</label>
+            <input type="number" id="edicion" name="edicion" required />
+        </div>
+        <div class="form-group">
+            <label for="pais">País:</label>
+            <input type="text" id="pais" name="pais" required />
+        </div>
+        <div class="form-group">
+            <label for="ciudad">Ciudad (Opcional):</label>
+            <input type="text" id="ciudad" name="ciudad" />
+        </div>
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+<footer>
+    &copy; 2024 Biblioteca Metrópolis
+</footer>

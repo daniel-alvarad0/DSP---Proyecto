@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/DVD.css" rel="stylesheet"/>
+  
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="container mx-auto">
+        <h1>@ViewBag.Title</h1>
+
+        <div class="form-section">
+            <h2>Registrar Nuevos DVDs</h2>
+            <form method="post" action="@Url.Action("RegisterMaterial", "DVD")">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="title">Título:</label>
+                        <input type="text" id="title" name="title" required />
+                    </div>
+                    <div>
+                        <label for="mainAuthor">Autor Principal:</label>
+                        <input type="text" id="mainAuthor" name="mainAuthor" required />
+                    </div>
+                    <div>
+                        <label for="coAuthors">Otros Autores (separados por comas):</label>
+                        <input type="text" id="coAuthors" name="coAuthors" />
+                    </div>
+                    <div>
+                        <label for="editor">Editor (dejar vacío si es tesis):</label>
+                        <input type="text" id="editor" name="editor" />
+                    </div>
+                    <div>
+                        <label for="educationalInstitution">Institución Educativa para Tesis:</label>
+                        <input type="text" id="educationalInstitution" name="educationalInstitution" />
+                    </div>
+                    <div>
+                        <label for="keywords">Palabras Clave (separadas por comas):</label>
+                        <input type="text" id="keywords" name="keywords" />
+                    </div>
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>Buscar Materiales</h2>
+            <form method="get" action="@Url.Action("SearchMaterial", "DVD")">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="searchAuthor">Autor:</label>
+                        <input type="text" id="searchAuthor" name="searchAuthor" />
+                    </div>
+                    <div>
+                        <label for="searchKeywords">Palabras Clave:</label>
+                        <input type="text" id="searchKeywords" name="searchKeywords" />
+                    </div>
+                    <div>
+                        <label for="searchEditor">Editorial:</label>
+                        <input type="text" id="searchEditor" name="searchEditor" />
+                    </div>
+                    <div>
+                        <label for="searchYear">Año de Publicación:</label>
+                        <input type="number" id="searchYear" name="searchYear" min="2013" max="2023" placeholder="Hasta 10 años atrás" />
+                    </div>
+                </div>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>Lista de DVDs Disponibles</h2>
+            <form method="get" action="@Url.Action("ListDVDs", "DVD")">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="dvdYear">Año de Publicación (hasta 10 años atrás):</label>
+                        <input type="number" id="dvdYear" name="dvdYear" min="2013" max="2023" required />
+                    </div>
+                </div>
+                <button type="submit">Listar DVDs</button>
+            </form>
+        </div>
+
+        <div>
+            <h2>Resultados de Búsqueda</h2>
+            <ul class="results-list">
+                <li>@ViewBag.Nombre</li>
+                <li>DVD</li>
+                <li>Tesis</li>
+                <li>Otros Materiales</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Biblioteca Metrópolis
+    </footer>
+</body>
+</html>

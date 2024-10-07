@@ -1,0 +1,69 @@
+﻿body {
+    background-color: #e2e8f0; /* Color de fondo más suave */
+    font-family: 'Arial', sans-serif; /* Tipografía más moderna */
+}
+
+.container {
+    max-width: 800px; /* Limitar el ancho máximo del contenedor */
+    background-color: #ffffff;
+    border-radius: 15px; /* Bordes más redondeados */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem; /* Espaciado interno */
+}
+
+h1 {
+    color: #2c5282; /* Color más atractivo para el título */
+    font-size: 2.5rem; /* Tamaño de fuente más grande */
+    text-align: center; /* Centrar el título */
+}
+
+h2 {
+    color: #2b6cb0; /* Color para subtítulos */
+    font-size: 1.75rem; /* Tamaño de fuente para subtítulos */
+    text-align: center; /* Centrar subtítulos */
+    margin-bottom: 1rem; /* Espacio inferior */
+}
+
+label {
+    color: #4a5568; /* Color de las etiquetas */
+    font-weight: bold; /* Negrita para etiquetas */
+}
+
+input {
+    border: 2px solid #cbd5e0; /* Borde más visible */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 0.75rem; /* Espaciado interno */
+    width: 100%; /* Ancho completo */
+    transition: border-color 0.3s; /* Transición suave para el borde */
+}
+
+    input:focus {
+        border-color: #2b6cb0; /* Color del borde al enfocar */
+        outline: none; /* Sin contorno */
+    }
+
+button {
+    background-color: #2b6cb0; /* Color de fondo de los botones */
+    color: white; /* Color del texto de los botones */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 0.75rem; /* Espaciado interno */
+    width: 100%; /* Ancho completo */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+    margin-top: 1rem; /* Margen superior para separar del input */
+}
+
+    button:hover {
+        background-color: #2c5282; /* Color de fondo al pasar el mouse */
+    }
+
+.form-section {
+    margin-bottom: 2rem; /* Espacio entre secciones */
+}
+
+.results-list {
+    list-style-type: disc; /* Estilo de lista */
+    padding-left: 1.5rem; /* Espacio a la izquierda */
+    text-align: center; /* Centrar texto de resultados */
+}

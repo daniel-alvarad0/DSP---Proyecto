@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link href="~/Content/css/Tesis.css" rel="stylesheet" />
+<h2>Registro de Tesis</h2>
+
+<form>
+    <label for="txtTitulo">Título:</label>
+    <input type="text" id="txtTitulo" placeholder="Ingrese el título de la tesis" />
+
+    <label for="txtAutorPrincipal">Autor Principal:</label>
+    <input type="text" id="txtAutorPrincipal" placeholder="Ingrese el autor principal" />
+
+    <label for="txtOtrosAutores">Otros Autores:</label>
+    <input type="text" id="txtOtrosAutores" placeholder="Ingrese otros autores (opcional)" />
+
+    <label for="txtAnoPublicacion">Año de Publicación:</label>
+    <input type="text" id="txtAnoPublicacion" placeholder="Ingrese el año de publicación" />
+
+    <label for="txtInstitucion">Institución Educativa:</label>
+    <input type="text" id="txtInstitucion" placeholder="Ingrese la institución educativa" />
+
+    <label for="txtPais">País:</label>
+    <input type="text" id="txtPais" placeholder="Ingrese el país" />
+
+    <label for="txtCiudad">Ciudad <span class="optional">(opcional)</span>:</label>
+    <input type="text" id="txtCiudad" placeholder="Ingrese la ciudad (opcional)" />
+
+    <label for="txtCantidad">Cantidad de Unidades:</label>
+    <input type="text" id="txtCantidad" placeholder="Ingrese la cantidad de unidades" />
+
+    <label for="txtPrecio">Precio Individual:</label>
+    <input type="text" id="txtPrecio" placeholder="Ingrese el precio individual" />
+
+    <label for="txtEtiquetas">Palabras Clave/Etiquetas:</label>
+    <input type="text" id="txtEtiquetas" placeholder="Ingrese palabras clave o etiquetas" />
+
+    <input type="submit" value="Guardar Tesis" />
+</form>
