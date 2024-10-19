@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Biblioteca_MetropolisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="IdAutor" />
+          </Key>
+          <Property Name="IdAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AutoresRecursos">
+          <Key>
+            <PropertyRef Name="IdRecAutor" />
+          </Key>
+          <Property Name="IdRecAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRec" Type="int" />
+          <Property Name="IdAutor" Type="int" />
+          <Property Name="EsPrincipal" Type="bit" />
+        </EntityType>
+        <EntityType Name="Editorial">
+          <Key>
+            <PropertyRef Name="IdEdit" />
+          </Key>
+          <Property Name="IdEdit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="IdPais" />
+          </Key>
+          <Property Name="IdPais" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recurso">
+          <Key>
+            <PropertyRef Name="IdRec" />
+          </Key>
+          <Property Name="IdRec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AnnoPublic" Type="int" Nullable="false" />
+          <Property Name="IdEdit" Type="int" />
+          <Property Name="Edicion" Type="varchar" MaxLength="10" />
+          <Property Name="IdPais" Type="varchar" MaxLength="10" />
+          <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_AutoresRecursos_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="IdAutor" />
+            </Principal>
+            <Dependent Role="AutoresRecursos">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoresRecursos_Recurso">
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recurso">
+              <PropertyRef Name="IdRec" />
+            </Principal>
+            <Dependent Role="AutoresRecursos">
+              <PropertyRef Name="IdRec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recurso_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Recurso">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recurso_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Recurso">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_MetropolisModelStoreContainer">
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoresRecursos" EntityType="Self.AutoresRecursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editorial" EntityType="Self.Editorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recurso" EntityType="Self.Recurso" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AutoresRecursos_Autor" Association="Self.FK_AutoresRecursos_Autor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoresRecursos_Recurso" Association="Self.FK_AutoresRecursos_Recurso">
+            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recurso_Editorial" Association="Self.FK_Recurso_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Recurso" EntitySet="Recurso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recurso_Pais" Association="Self.FK_Recurso_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Recurso" EntitySet="Recurso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Biblioteca_MetropolisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="IdAutor" />
+          </Key>
+          <Property Name="IdAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AutoresRecursos" Relationship="Self.FK_AutoresRecursos_Autor" FromRole="Autor" ToRole="AutoresRecursos" />
+        </EntityType>
+        <EntityType Name="AutoresRecursos">
+          <Key>
+            <PropertyRef Name="IdRecAutor" />
+          </Key>
+          <Property Name="IdRecAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRec" Type="Int32" />
+          <Property Name="IdAutor" Type="Int32" />
+          <Property Name="EsPrincipal" Type="Boolean" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK_AutoresRecursos_Autor" FromRole="AutoresRecursos" ToRole="Autor" />
+          <NavigationProperty Name="Recurso" Relationship="Self.FK_AutoresRecursos_Recurso" FromRole="AutoresRecursos" ToRole="Recurso" />
+        </EntityType>
+        <EntityType Name="Editorial">
+          <Key>
+            <PropertyRef Name="IdEdit" />
+          </Key>
+          <Property Name="IdEdit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recurso" Relationship="Self.FK_Recurso_Editorial" FromRole="Editorial" ToRole="Recurso" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="IdPais" />
+          </Key>
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recurso" Relationship="Self.FK_Recurso_Pais" FromRole="Pais" ToRole="Recurso" />
+        </EntityType>
+        <EntityType Name="Recurso">
+          <Key>
+            <PropertyRef Name="IdRec" />
+          </Key>
+          <Property Name="IdRec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
+          <Property Name="IdEdit" Type="Int32" />
+          <Property Name="Edicion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AutoresRecursos" Relationship="Self.FK_AutoresRecursos_Recurso" FromRole="Recurso" ToRole="AutoresRecursos" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK_Recurso_Editorial" FromRole="Recurso" ToRole="Editorial" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Recurso_Pais" FromRole="Recurso" ToRole="Pais" />
+        </EntityType>
+        <Association Name="FK_AutoresRecursos_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="IdAutor" />
+            </Principal>
+            <Dependent Role="AutoresRecursos">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoresRecursos_Recurso">
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recurso">
+              <PropertyRef Name="IdRec" />
+            </Principal>
+            <Dependent Role="AutoresRecursos">
+              <PropertyRef Name="IdRec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recurso_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Recurso">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recurso_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Recurso">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_MetropolisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autor" EntityType="Self.Autor" />
+          <EntitySet Name="AutoresRecursos" EntityType="Self.AutoresRecursos" />
+          <EntitySet Name="Editorial" EntityType="Self.Editorial" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" />
+          <EntitySet Name="Recurso" EntityType="Self.Recurso" />
+          <AssociationSet Name="FK_AutoresRecursos_Autor" Association="Self.FK_AutoresRecursos_Autor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoresRecursos_Recurso" Association="Self.FK_AutoresRecursos_Recurso">
+            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recurso_Editorial" Association="Self.FK_Recurso_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Recurso" EntitySet="Recurso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recurso_Pais" Association="Self.FK_Recurso_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Recurso" EntitySet="Recurso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Biblioteca_MetropolisModelStoreContainer" CdmEntityContainer="Biblioteca_MetropolisEntities">
+          <EntitySetMapping Name="Autor">
+            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoresRecursos">
+            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.AutoresRecursos">
+              <MappingFragment StoreEntitySet="AutoresRecursos">
+                <ScalarProperty Name="IdRecAutor" ColumnName="IdRecAutor" />
+                <ScalarProperty Name="IdRec" ColumnName="IdRec" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="EsPrincipal" ColumnName="EsPrincipal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editorial">
+            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Editorial">
+              <MappingFragment StoreEntitySet="Editorial">
+                <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recurso">
+            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Recurso">
+              <MappingFragment StoreEntitySet="Recurso">
+                <ScalarProperty Name="IdRec" ColumnName="IdRec" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
+                <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

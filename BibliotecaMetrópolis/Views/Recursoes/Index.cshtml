@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BibliotecaMetrópolis.Recurso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnoPublic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edicion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PalabraBusqueda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Editorial.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnoPublic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PalabraBusqueda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editorial.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdRec }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdRec }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdRec })
+        </td>
+    </tr>
+}
+
+</table>

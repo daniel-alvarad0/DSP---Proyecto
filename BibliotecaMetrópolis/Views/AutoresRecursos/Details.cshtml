@@ -1,0 +1,42 @@
+﻿@model BibliotecaMetrópolis.AutoresRecursos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AutoresRecursos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EsPrincipal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsPrincipal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recurso.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recurso.Titulo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRecAutor }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
