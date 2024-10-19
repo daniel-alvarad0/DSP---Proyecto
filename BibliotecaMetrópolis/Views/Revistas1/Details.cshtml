@@ -1,0 +1,66 @@
+﻿@model BibliotecaMetrópolis.Revista
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Revista</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnoPublic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnoPublic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PalabraBusqueda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PalabraBusqueda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editorial.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRevista }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

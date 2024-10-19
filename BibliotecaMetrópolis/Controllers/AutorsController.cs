@@ -13,7 +13,7 @@ namespace BibliotecaMetrópolis.Controllers
 {
     public class AutorsController : Controller
     {
-        private Biblioteca_MetropolisEntities db = new Biblioteca_MetropolisEntities();
+        private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
         // GET: Autors
         public async Task<ActionResult> Index()

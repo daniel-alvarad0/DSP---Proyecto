@@ -1,0 +1,72 @@
+﻿@model BibliotecaMetrópolis.Enciclopedia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Enciclopedia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnoPublic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnoPublic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PalabraBusqueda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PalabraBusqueda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editorial.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

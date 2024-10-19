@@ -13,12 +13,12 @@ namespace BibliotecaMetrópolis.Controllers
 {
     public class AutoresRecursosController : Controller
     {
-        private Biblioteca_MetropolisEntities db = new Biblioteca_MetropolisEntities();
+        private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
         // GET: AutoresRecursos
         public async Task<ActionResult> Index()
         {
-            var autoresRecursos = db.AutoresRecursos.Include(a => a.Autor).Include(a => a.Recurso);
+            var autoresRecursos = db.AutoresRecursos.Include(a => a.Autor);
             return View(await autoresRecursos.ToListAsync());
         }
 
@@ -41,7 +41,6 @@ namespace BibliotecaMetrópolis.Controllers
         public ActionResult Create()
         {
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre");
-            ViewBag.IdRec = new SelectList(db.Recurso, "IdRec", "Titulo");
             return View();
         }
 
@@ -50,7 +49,7 @@ namespace BibliotecaMetrópolis.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IdRecAutor,IdRec,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
+        public async Task<ActionResult> Create([Bind(Include = "IdRecAutor,IdRecurso,TipoRecurso,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +59,6 @@ namespace BibliotecaMetrópolis.Controllers
             }
 
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre", autoresRecursos.IdAutor);
-            ViewBag.IdRec = new SelectList(db.Recurso, "IdRec", "Titulo", autoresRecursos.IdRec);
             return View(autoresRecursos);
         }
 
@@ -77,7 +75,6 @@ namespace BibliotecaMetrópolis.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre", autoresRecursos.IdAutor);
-            ViewBag.IdRec = new SelectList(db.Recurso, "IdRec", "Titulo", autoresRecursos.IdRec);
             return View(autoresRecursos);
         }
 
@@ -86,7 +83,7 @@ namespace BibliotecaMetrópolis.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IdRecAutor,IdRec,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
+        public async Task<ActionResult> Edit([Bind(Include = "IdRecAutor,IdRecurso,TipoRecurso,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +92,6 @@ namespace BibliotecaMetrópolis.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre", autoresRecursos.IdAutor);
-            ViewBag.IdRec = new SelectList(db.Recurso, "IdRec", "Titulo", autoresRecursos.IdRec);
             return View(autoresRecursos);
         }
 

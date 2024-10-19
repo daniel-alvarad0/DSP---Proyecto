@@ -12,14 +12,17 @@ namespace BibliotecaMetrópolis
     using System;
     using System.Collections.Generic;
     
-    public partial class AutoresRecursos
+    public partial class Enciclopedia
     {
-        public int IdRecAutor { get; set; }
-        public Nullable<int> IdRecurso { get; set; }
-        public string TipoRecurso { get; set; }
-        public Nullable<int> IdAutor { get; set; }
-        public Nullable<bool> EsPrincipal { get; set; }
+        public int IdEnciclopedia { get; set; }
+        public string Titulo { get; set; }
+        public int AnnoPublic { get; set; }
+        public Nullable<int> IdEdit { get; set; }
+        public string Edicion { get; set; }
+        public string IdPais { get; set; }
+        public string PalabraBusqueda { get; set; }
     
-        public virtual Autor Autor { get; set; }
+        public virtual Editorial Editorial { get; set; }
+        public virtual Pais Pais { get; set; }
     }
 }

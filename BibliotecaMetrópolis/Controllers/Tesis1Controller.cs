@@ -11,116 +11,112 @@ using BibliotecaMetrópolis;
 
 namespace BibliotecaMetrópolis.Controllers
 {
-    public class RecursoesController : Controller
+    public class Tesis1Controller : Controller
     {
-        private Biblioteca_MetropolisEntities db = new Biblioteca_MetropolisEntities();
+        private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Recursoes
+        // GET: Tesis1
         public async Task<ActionResult> Index()
         {
-            var recurso = db.Recurso.Include(r => r.Editorial).Include(r => r.Pais);
-            return View(await recurso.ToListAsync());
+            var tesis = db.Tesis.Include(t => t.Pais);
+            return View(await tesis.ToListAsync());
         }
 
-        // GET: Recursoes/Details/5
+        // GET: Tesis1/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recurso recurso = await db.Recurso.FindAsync(id);
-            if (recurso == null)
+            Tesis tesis = await db.Tesis.FindAsync(id);
+            if (tesis == null)
             {
                 return HttpNotFound();
             }
-            return View(recurso);
+            return View(tesis);
         }
 
-        // GET: Recursoes/Create
+        // GET: Tesis1/Create
         public ActionResult Create()
         {
-            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre");
             ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre");
             return View();
         }
 
-        // POST: Recursoes/Create
+        // POST: Tesis1/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IdRec,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Recurso recurso)
+        public async Task<ActionResult> Create([Bind(Include = "IdTesis,Titulo,AnnoPublic,InstitucionEducativa,IdPais,PalabraBusqueda")] Tesis tesis)
         {
             if (ModelState.IsValid)
             {
-                db.Recurso.Add(recurso);
+                db.Tesis.Add(tesis);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", recurso.IdEdit);
-            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", recurso.IdPais);
-            return View(recurso);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", tesis.IdPais);
+            return View(tesis);
         }
 
-        // GET: Recursoes/Edit/5
+        // GET: Tesis1/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recurso recurso = await db.Recurso.FindAsync(id);
-            if (recurso == null)
+            Tesis tesis = await db.Tesis.FindAsync(id);
+            if (tesis == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", recurso.IdEdit);
-            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", recurso.IdPais);
-            return View(recurso);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", tesis.IdPais);
+            return View(tesis);
         }
 
-        // POST: Recursoes/Edit/5
+        // POST: Tesis1/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IdRec,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Recurso recurso)
+        public async Task<ActionResult> Edit([Bind(Include = "IdTesis,Titulo,AnnoPublic,InstitucionEducativa,IdPais,PalabraBusqueda")] Tesis tesis)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(recurso).State = EntityState.Modified;
+                db.Entry(tesis).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", recurso.IdEdit);
-            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", recurso.IdPais);
-            return View(recurso);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", tesis.IdPais);
+            return View(tesis);
         }
 
-        // GET: Recursoes/Delete/5
+        // GET: Tesis1/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recurso recurso = await db.Recurso.FindAsync(id);
-            if (recurso == null)
+            Tesis tesis = await db.Tesis.FindAsync(id);
+            if (tesis == null)
             {
                 return HttpNotFound();
             }
-            return View(recurso);
+            return View(tesis);
         }
 
-        // POST: Recursoes/Delete/5
+        // POST: Tesis1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Recurso recurso = await db.Recurso.FindAsync(id);
-            db.Recurso.Remove(recurso);
+            Tesis tesis = await db.Tesis.FindAsync(id);
+            db.Tesis.Remove(tesis);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

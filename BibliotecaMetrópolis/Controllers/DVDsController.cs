@@ -11,107 +11,116 @@ using BibliotecaMetrópolis;
 
 namespace BibliotecaMetrópolis.Controllers
 {
-    public class EditorialsController : Controller
+    public class DVDsController : Controller
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Editorials
+        // GET: DVDs
         public async Task<ActionResult> Index()
         {
-            return View(await db.Editorial.ToListAsync());
+            var dVD = db.DVD.Include(d => d.Editorial).Include(d => d.Pais);
+            return View(await dVD.ToListAsync());
         }
 
-        // GET: Editorials/Details/5
+        // GET: DVDs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            DVD dVD = await db.DVD.FindAsync(id);
+            if (dVD == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            return View(dVD);
         }
 
-        // GET: Editorials/Create
+        // GET: DVDs/Create
         public ActionResult Create()
         {
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre");
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre");
             return View();
         }
 
-        // POST: Editorials/Create
+        // POST: DVDs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IdEdit,Nombre")] Editorial editorial)
+        public async Task<ActionResult> Create([Bind(Include = "IdDVD,Titulo,AnnoPublic,IdEdit,IdPais,PalabraBusqueda")] DVD dVD)
         {
             if (ModelState.IsValid)
             {
-                db.Editorial.Add(editorial);
+                db.DVD.Add(dVD);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", dVD.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", dVD.IdPais);
+            return View(dVD);
         }
 
-        // GET: Editorials/Edit/5
+        // GET: DVDs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            DVD dVD = await db.DVD.FindAsync(id);
+            if (dVD == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", dVD.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", dVD.IdPais);
+            return View(dVD);
         }
 
-        // POST: Editorials/Edit/5
+        // POST: DVDs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IdEdit,Nombre")] Editorial editorial)
+        public async Task<ActionResult> Edit([Bind(Include = "IdDVD,Titulo,AnnoPublic,IdEdit,IdPais,PalabraBusqueda")] DVD dVD)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(editorial).State = EntityState.Modified;
+                db.Entry(dVD).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", dVD.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", dVD.IdPais);
+            return View(dVD);
         }
 
-        // GET: Editorials/Delete/5
+        // GET: DVDs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            DVD dVD = await db.DVD.FindAsync(id);
+            if (dVD == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            return View(dVD);
         }
 
-        // POST: Editorials/Delete/5
+        // POST: DVDs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            db.Editorial.Remove(editorial);
+            DVD dVD = await db.DVD.FindAsync(id);
+            db.DVD.Remove(dVD);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

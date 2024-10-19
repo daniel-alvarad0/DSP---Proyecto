@@ -11,6 +11,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.IdRecurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRecurso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoRecurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoRecurso)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EsPrincipal)
         </dt>
 
@@ -24,14 +40,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Autor.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Recurso.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Recurso.Titulo)
         </dd>
 
     </dl>

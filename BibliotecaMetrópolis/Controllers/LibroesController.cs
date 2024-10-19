@@ -11,107 +11,116 @@ using BibliotecaMetrópolis;
 
 namespace BibliotecaMetrópolis.Controllers
 {
-    public class EditorialsController : Controller
+    public class LibroesController : Controller
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Editorials
+        // GET: Libroes
         public async Task<ActionResult> Index()
         {
-            return View(await db.Editorial.ToListAsync());
+            var libro = db.Libro.Include(l => l.Editorial).Include(l => l.Pais);
+            return View(await libro.ToListAsync());
         }
 
-        // GET: Editorials/Details/5
+        // GET: Libroes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            Libro libro = await db.Libro.FindAsync(id);
+            if (libro == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            return View(libro);
         }
 
-        // GET: Editorials/Create
+        // GET: Libroes/Create
         public ActionResult Create()
         {
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre");
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre");
             return View();
         }
 
-        // POST: Editorials/Create
+        // POST: Libroes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IdEdit,Nombre")] Editorial editorial)
+        public async Task<ActionResult> Create([Bind(Include = "IdLibro,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Libro libro)
         {
             if (ModelState.IsValid)
             {
-                db.Editorial.Add(editorial);
+                db.Libro.Add(libro);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", libro.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", libro.IdPais);
+            return View(libro);
         }
 
-        // GET: Editorials/Edit/5
+        // GET: Libroes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            Libro libro = await db.Libro.FindAsync(id);
+            if (libro == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", libro.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", libro.IdPais);
+            return View(libro);
         }
 
-        // POST: Editorials/Edit/5
+        // POST: Libroes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IdEdit,Nombre")] Editorial editorial)
+        public async Task<ActionResult> Edit([Bind(Include = "IdLibro,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Libro libro)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(editorial).State = EntityState.Modified;
+                db.Entry(libro).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(editorial);
+            ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre", libro.IdEdit);
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre", libro.IdPais);
+            return View(libro);
         }
 
-        // GET: Editorials/Delete/5
+        // GET: Libroes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            if (editorial == null)
+            Libro libro = await db.Libro.FindAsync(id);
+            if (libro == null)
             {
                 return HttpNotFound();
             }
-            return View(editorial);
+            return View(libro);
         }
 
-        // POST: Editorials/Delete/5
+        // POST: Libroes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Editorial editorial = await db.Editorial.FindAsync(id);
-            db.Editorial.Remove(editorial);
+            Libro libro = await db.Libro.FindAsync(id);
+            db.Libro.Remove(libro);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

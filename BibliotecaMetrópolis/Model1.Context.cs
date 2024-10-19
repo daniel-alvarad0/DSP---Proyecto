@@ -13,10 +13,10 @@ namespace BibliotecaMetrópolis
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Biblioteca_MetropolisEntities : DbContext
+    public partial class Biblioteca_Metropolis_newEntities : DbContext
     {
-        public Biblioteca_MetropolisEntities()
-            : base("name=Biblioteca_MetropolisEntities")
+        public Biblioteca_Metropolis_newEntities()
+            : base("name=Biblioteca_Metropolis_newEntities")
         {
         }
     
@@ -27,8 +27,13 @@ namespace BibliotecaMetrópolis
     
         public virtual DbSet<Autor> Autor { get; set; }
         public virtual DbSet<AutoresRecursos> AutoresRecursos { get; set; }
+        public virtual DbSet<DVD> DVD { get; set; }
         public virtual DbSet<Editorial> Editorial { get; set; }
+        public virtual DbSet<Enciclopedia> Enciclopedia { get; set; }
+        public virtual DbSet<Libro> Libro { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
-        public virtual DbSet<Recurso> Recurso { get; set; }
+        public virtual DbSet<Revista> Revista { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tesis> Tesis { get; set; }
     }
 }

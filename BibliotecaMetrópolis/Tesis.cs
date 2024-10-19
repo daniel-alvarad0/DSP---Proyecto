@@ -12,25 +12,15 @@ namespace BibliotecaMetrópolis
     using System;
     using System.Collections.Generic;
     
-    public partial class Recurso
+    public partial class Tesis
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Recurso()
-        {
-            this.AutoresRecursos = new HashSet<AutoresRecursos>();
-        }
-    
-        public int IdRec { get; set; }
+        public int IdTesis { get; set; }
         public string Titulo { get; set; }
         public int AnnoPublic { get; set; }
-        public Nullable<int> IdEdit { get; set; }
-        public string Edicion { get; set; }
+        public string InstitucionEducativa { get; set; }
         public string IdPais { get; set; }
         public string PalabraBusqueda { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AutoresRecursos> AutoresRecursos { get; set; }
-        public virtual Editorial Editorial { get; set; }
         public virtual Pais Pais { get; set; }
     }
 }

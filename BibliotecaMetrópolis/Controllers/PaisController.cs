@@ -13,7 +13,7 @@ namespace BibliotecaMetrópolis.Controllers
 {
     public class PaisController : Controller
     {
-        private Biblioteca_MetropolisEntities db = new Biblioteca_MetropolisEntities();
+        private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
         // GET: Pais
         public async Task<ActionResult> Index()

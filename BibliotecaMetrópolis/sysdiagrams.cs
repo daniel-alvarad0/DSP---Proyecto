@@ -12,14 +12,12 @@ namespace BibliotecaMetrópolis
     using System;
     using System.Collections.Generic;
     
-    public partial class AutoresRecursos
+    public partial class sysdiagrams
     {
-        public int IdRecAutor { get; set; }
-        public Nullable<int> IdRecurso { get; set; }
-        public string TipoRecurso { get; set; }
-        public Nullable<int> IdAutor { get; set; }
-        public Nullable<bool> EsPrincipal { get; set; }
-    
-        public virtual Autor Autor { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BibliotecaMetrópolis.Recurso>
+﻿@model IEnumerable<BibliotecaMetrópolis.Enciclopedia>
 
 @{
     ViewBag.Title = "Index";
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Pais.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdRec }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdRec }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdRec })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdEnciclopedia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdEnciclopedia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdEnciclopedia })
         </td>
     </tr>
 }

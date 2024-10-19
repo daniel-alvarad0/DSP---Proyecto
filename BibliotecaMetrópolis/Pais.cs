@@ -17,13 +17,25 @@ namespace BibliotecaMetrópolis
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pais()
         {
-            this.Recurso = new HashSet<Recurso>();
+            this.DVD = new HashSet<DVD>();
+            this.Enciclopedia = new HashSet<Enciclopedia>();
+            this.Libro = new HashSet<Libro>();
+            this.Revista = new HashSet<Revista>();
+            this.Tesis = new HashSet<Tesis>();
         }
     
         public string IdPais { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Recurso> Recurso { get; set; }
+        public virtual ICollection<DVD> DVD { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enciclopedia> Enciclopedia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Libro> Libro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Revista> Revista { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tesis> Tesis { get; set; }
     }
 }

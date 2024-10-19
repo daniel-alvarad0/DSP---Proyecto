@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Biblioteca_MetropolisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Biblioteca_Metropolis_newModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autor">
           <Key>
             <PropertyRef Name="IdAutor" />
@@ -18,9 +18,21 @@
             <PropertyRef Name="IdRecAutor" />
           </Key>
           <Property Name="IdRecAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdRec" Type="int" />
+          <Property Name="IdRecurso" Type="int" />
+          <Property Name="TipoRecurso" Type="varchar" MaxLength="20" />
           <Property Name="IdAutor" Type="int" />
           <Property Name="EsPrincipal" Type="bit" />
+        </EntityType>
+        <EntityType Name="DVD">
+          <Key>
+            <PropertyRef Name="IdDVD" />
+          </Key>
+          <Property Name="IdDVD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AnnoPublic" Type="int" Nullable="false" />
+          <Property Name="IdEdit" Type="int" />
+          <Property Name="IdPais" Type="varchar" MaxLength="10" />
+          <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Editorial">
           <Key>
@@ -29,18 +41,11 @@
           <Property Name="IdEdit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="Pais">
+        <EntityType Name="Enciclopedia">
           <Key>
-            <PropertyRef Name="IdPais" />
+            <PropertyRef Name="IdEnciclopedia" />
           </Key>
-          <Property Name="IdPais" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Recurso">
-          <Key>
-            <PropertyRef Name="IdRec" />
-          </Key>
-          <Property Name="IdRec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEnciclopedia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="AnnoPublic" Type="int" Nullable="false" />
           <Property Name="IdEdit" Type="int" />
@@ -48,10 +53,60 @@
           <Property Name="IdPais" Type="varchar" MaxLength="10" />
           <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="IdLibro" />
+          </Key>
+          <Property Name="IdLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AnnoPublic" Type="int" Nullable="false" />
+          <Property Name="IdEdit" Type="int" />
+          <Property Name="Edicion" Type="varchar" MaxLength="10" />
+          <Property Name="IdPais" Type="varchar" MaxLength="10" />
+          <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="IdPais" />
+          </Key>
+          <Property Name="IdPais" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Revista">
+          <Key>
+            <PropertyRef Name="IdRevista" />
+          </Key>
+          <Property Name="IdRevista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AnnoPublic" Type="int" Nullable="false" />
+          <Property Name="IdEdit" Type="int" />
+          <Property Name="Edicion" Type="varchar" MaxLength="10" />
+          <Property Name="IdPais" Type="varchar" MaxLength="10" />
+          <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tesis">
+          <Key>
+            <PropertyRef Name="IdTesis" />
+          </Key>
+          <Property Name="IdTesis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AnnoPublic" Type="int" Nullable="false" />
+          <Property Name="InstitucionEducativa" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdPais" Type="varchar" MaxLength="10" />
+          <Property Name="PalabraBusqueda" Type="varchar" MaxLength="100" />
+        </EntityType>
         <Association Name="FK_AutoresRecursos_Autor">
-          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1" />
           <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Autor">
@@ -62,76 +117,171 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AutoresRecursos_Recurso">
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recurso">
-              <PropertyRef Name="IdRec" />
-            </Principal>
-            <Dependent Role="AutoresRecursos">
-              <PropertyRef Name="IdRec" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recurso_Editorial">
-          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+        <Association Name="FK_DVD_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="DVD" Type="Self.DVD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editorial">
               <PropertyRef Name="IdEdit" />
             </Principal>
-            <Dependent Role="Recurso">
+            <Dependent Role="DVD">
               <PropertyRef Name="IdEdit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Recurso_Pais">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+        <Association Name="FK_DVD_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="DVD" Type="Self.DVD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pais">
               <PropertyRef Name="IdPais" />
             </Principal>
-            <Dependent Role="Recurso">
+            <Dependent Role="DVD">
               <PropertyRef Name="IdPais" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Biblioteca_MetropolisModelStoreContainer">
+        <Association Name="FK_Enciclopedia_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Enciclopedia" Type="Self.Enciclopedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Enciclopedia">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enciclopedia_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Enciclopedia" Type="Self.Enciclopedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Enciclopedia">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revista_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Revista" Type="Self.Revista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Revista">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revista_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Revista" Type="Self.Revista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Revista">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tesis_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Tesis" Type="Self.Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Tesis">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_Metropolis_newModelStoreContainer">
           <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutoresRecursos" EntityType="Self.AutoresRecursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DVD" EntityType="Self.DVD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Editorial" EntityType="Self.Editorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enciclopedia" EntityType="Self.Enciclopedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Recurso" EntityType="Self.Recurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Revista" EntityType="Self.Revista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tesis" EntityType="Self.Tesis" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AutoresRecursos_Autor" Association="Self.FK_AutoresRecursos_Autor">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
           </AssociationSet>
-          <AssociationSet Name="FK_AutoresRecursos_Recurso" Association="Self.FK_AutoresRecursos_Recurso">
-            <End Role="Recurso" EntitySet="Recurso" />
-            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recurso_Editorial" Association="Self.FK_Recurso_Editorial">
+          <AssociationSet Name="FK_DVD_Editorial" Association="Self.FK_DVD_Editorial">
             <End Role="Editorial" EntitySet="Editorial" />
-            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="DVD" EntitySet="DVD" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recurso_Pais" Association="Self.FK_Recurso_Pais">
+          <AssociationSet Name="FK_DVD_Pais" Association="Self.FK_DVD_Pais">
             <End Role="Pais" EntitySet="Pais" />
-            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="DVD" EntitySet="DVD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enciclopedia_Editorial" Association="Self.FK_Enciclopedia_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Enciclopedia" EntitySet="Enciclopedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enciclopedia_Pais" Association="Self.FK_Enciclopedia_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Enciclopedia" EntitySet="Enciclopedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Editorial" Association="Self.FK_Libro_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Pais" Association="Self.FK_Libro_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revista_Editorial" Association="Self.FK_Revista_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Revista" EntitySet="Revista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revista_Pais" Association="Self.FK_Revista_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Revista" EntitySet="Revista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tesis_Pais" Association="Self.FK_Tesis_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Tesis" EntitySet="Tesis" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Biblioteca_MetropolisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Biblioteca_Metropolis_newModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Autor">
           <Key>
             <PropertyRef Name="IdAutor" />
@@ -146,11 +296,24 @@
             <PropertyRef Name="IdRecAutor" />
           </Key>
           <Property Name="IdRecAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdRec" Type="Int32" />
+          <Property Name="IdRecurso" Type="Int32" />
+          <Property Name="TipoRecurso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdAutor" Type="Int32" />
           <Property Name="EsPrincipal" Type="Boolean" />
           <NavigationProperty Name="Autor" Relationship="Self.FK_AutoresRecursos_Autor" FromRole="AutoresRecursos" ToRole="Autor" />
-          <NavigationProperty Name="Recurso" Relationship="Self.FK_AutoresRecursos_Recurso" FromRole="AutoresRecursos" ToRole="Recurso" />
+        </EntityType>
+        <EntityType Name="DVD">
+          <Key>
+            <PropertyRef Name="IdDVD" />
+          </Key>
+          <Property Name="IdDVD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
+          <Property Name="IdEdit" Type="Int32" />
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK_DVD_Editorial" FromRole="DVD" ToRole="Editorial" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_DVD_Pais" FromRole="DVD" ToRole="Pais" />
         </EntityType>
         <EntityType Name="Editorial">
           <Key>
@@ -158,7 +321,38 @@
           </Key>
           <Property Name="IdEdit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Recurso" Relationship="Self.FK_Recurso_Editorial" FromRole="Editorial" ToRole="Recurso" />
+          <NavigationProperty Name="DVD" Relationship="Self.FK_DVD_Editorial" FromRole="Editorial" ToRole="DVD" />
+          <NavigationProperty Name="Enciclopedia" Relationship="Self.FK_Enciclopedia_Editorial" FromRole="Editorial" ToRole="Enciclopedia" />
+          <NavigationProperty Name="Libro" Relationship="Self.FK_Libro_Editorial" FromRole="Editorial" ToRole="Libro" />
+          <NavigationProperty Name="Revista" Relationship="Self.FK_Revista_Editorial" FromRole="Editorial" ToRole="Revista" />
+        </EntityType>
+        <EntityType Name="Enciclopedia">
+          <Key>
+            <PropertyRef Name="IdEnciclopedia" />
+          </Key>
+          <Property Name="IdEnciclopedia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
+          <Property Name="IdEdit" Type="Int32" />
+          <Property Name="Edicion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK_Enciclopedia_Editorial" FromRole="Enciclopedia" ToRole="Editorial" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Enciclopedia_Pais" FromRole="Enciclopedia" ToRole="Pais" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="IdLibro" />
+          </Key>
+          <Property Name="IdLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
+          <Property Name="IdEdit" Type="Int32" />
+          <Property Name="Edicion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK_Libro_Editorial" FromRole="Libro" ToRole="Editorial" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Libro_Pais" FromRole="Libro" ToRole="Pais" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -166,27 +360,50 @@
           </Key>
           <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Recurso" Relationship="Self.FK_Recurso_Pais" FromRole="Pais" ToRole="Recurso" />
+          <NavigationProperty Name="DVD" Relationship="Self.FK_DVD_Pais" FromRole="Pais" ToRole="DVD" />
+          <NavigationProperty Name="Enciclopedia" Relationship="Self.FK_Enciclopedia_Pais" FromRole="Pais" ToRole="Enciclopedia" />
+          <NavigationProperty Name="Libro" Relationship="Self.FK_Libro_Pais" FromRole="Pais" ToRole="Libro" />
+          <NavigationProperty Name="Revista" Relationship="Self.FK_Revista_Pais" FromRole="Pais" ToRole="Revista" />
+          <NavigationProperty Name="Tesis" Relationship="Self.FK_Tesis_Pais" FromRole="Pais" ToRole="Tesis" />
         </EntityType>
-        <EntityType Name="Recurso">
+        <EntityType Name="Revista">
           <Key>
-            <PropertyRef Name="IdRec" />
+            <PropertyRef Name="IdRevista" />
           </Key>
-          <Property Name="IdRec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRevista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
           <Property Name="IdEdit" Type="Int32" />
           <Property Name="Edicion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AutoresRecursos" Relationship="Self.FK_AutoresRecursos_Recurso" FromRole="Recurso" ToRole="AutoresRecursos" />
-          <NavigationProperty Name="Editorial" Relationship="Self.FK_Recurso_Editorial" FromRole="Recurso" ToRole="Editorial" />
-          <NavigationProperty Name="Pais" Relationship="Self.FK_Recurso_Pais" FromRole="Recurso" ToRole="Pais" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK_Revista_Editorial" FromRole="Revista" ToRole="Editorial" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Revista_Pais" FromRole="Revista" ToRole="Pais" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tesis">
+          <Key>
+            <PropertyRef Name="IdTesis" />
+          </Key>
+          <Property Name="IdTesis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnoPublic" Type="Int32" Nullable="false" />
+          <Property Name="InstitucionEducativa" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PalabraBusqueda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Tesis_Pais" FromRole="Tesis" ToRole="Pais" />
         </EntityType>
         <Association Name="FK_AutoresRecursos_Autor">
-          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1" />
           <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Autor">
@@ -197,69 +414,164 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AutoresRecursos_Recurso">
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AutoresRecursos" Type="Self.AutoresRecursos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recurso">
-              <PropertyRef Name="IdRec" />
-            </Principal>
-            <Dependent Role="AutoresRecursos">
-              <PropertyRef Name="IdRec" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recurso_Editorial">
-          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+        <Association Name="FK_DVD_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="DVD" Type="Self.DVD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editorial">
               <PropertyRef Name="IdEdit" />
             </Principal>
-            <Dependent Role="Recurso">
+            <Dependent Role="DVD">
               <PropertyRef Name="IdEdit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Recurso_Pais">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Recurso" Type="Self.Recurso" Multiplicity="*" />
+        <Association Name="FK_DVD_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="DVD" Type="Self.DVD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pais">
               <PropertyRef Name="IdPais" />
             </Principal>
-            <Dependent Role="Recurso">
+            <Dependent Role="DVD">
               <PropertyRef Name="IdPais" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Biblioteca_MetropolisEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Enciclopedia_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Enciclopedia" Type="Self.Enciclopedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Enciclopedia">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revista_Editorial">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Revista" Type="Self.Revista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEdit" />
+            </Principal>
+            <Dependent Role="Revista">
+              <PropertyRef Name="IdEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enciclopedia_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Enciclopedia" Type="Self.Enciclopedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Enciclopedia">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revista_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Revista" Type="Self.Revista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Revista">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tesis_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Tesis" Type="Self.Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Tesis">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Biblioteca_Metropolis_newEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Autor" EntityType="Self.Autor" />
           <EntitySet Name="AutoresRecursos" EntityType="Self.AutoresRecursos" />
+          <EntitySet Name="DVD" EntityType="Self.DVD" />
           <EntitySet Name="Editorial" EntityType="Self.Editorial" />
+          <EntitySet Name="Enciclopedia" EntityType="Self.Enciclopedia" />
+          <EntitySet Name="Libro" EntityType="Self.Libro" />
           <EntitySet Name="Pais" EntityType="Self.Pais" />
-          <EntitySet Name="Recurso" EntityType="Self.Recurso" />
+          <EntitySet Name="Revista" EntityType="Self.Revista" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tesis" EntityType="Self.Tesis" />
           <AssociationSet Name="FK_AutoresRecursos_Autor" Association="Self.FK_AutoresRecursos_Autor">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
           </AssociationSet>
-          <AssociationSet Name="FK_AutoresRecursos_Recurso" Association="Self.FK_AutoresRecursos_Recurso">
-            <End Role="Recurso" EntitySet="Recurso" />
-            <End Role="AutoresRecursos" EntitySet="AutoresRecursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recurso_Editorial" Association="Self.FK_Recurso_Editorial">
+          <AssociationSet Name="FK_DVD_Editorial" Association="Self.FK_DVD_Editorial">
             <End Role="Editorial" EntitySet="Editorial" />
-            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="DVD" EntitySet="DVD" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recurso_Pais" Association="Self.FK_Recurso_Pais">
+          <AssociationSet Name="FK_DVD_Pais" Association="Self.FK_DVD_Pais">
             <End Role="Pais" EntitySet="Pais" />
-            <End Role="Recurso" EntitySet="Recurso" />
+            <End Role="DVD" EntitySet="DVD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enciclopedia_Editorial" Association="Self.FK_Enciclopedia_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Enciclopedia" EntitySet="Enciclopedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Editorial" Association="Self.FK_Libro_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revista_Editorial" Association="Self.FK_Revista_Editorial">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Revista" EntitySet="Revista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enciclopedia_Pais" Association="Self.FK_Enciclopedia_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Enciclopedia" EntitySet="Enciclopedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Pais" Association="Self.FK_Libro_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revista_Pais" Association="Self.FK_Revista_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Revista" EntitySet="Revista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tesis_Pais" Association="Self.FK_Tesis_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Tesis" EntitySet="Tesis" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -267,9 +579,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Biblioteca_MetropolisModelStoreContainer" CdmEntityContainer="Biblioteca_MetropolisEntities">
+        <EntityContainerMapping StorageEntityContainer="Biblioteca_Metropolis_newModelStoreContainer" CdmEntityContainer="Biblioteca_Metropolis_newEntities">
           <EntitySetMapping Name="Autor">
-            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Autor">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Autor">
               <MappingFragment StoreEntitySet="Autor">
                 <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -278,39 +590,101 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AutoresRecursos">
-            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.AutoresRecursos">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.AutoresRecursos">
               <MappingFragment StoreEntitySet="AutoresRecursos">
                 <ScalarProperty Name="IdRecAutor" ColumnName="IdRecAutor" />
-                <ScalarProperty Name="IdRec" ColumnName="IdRec" />
+                <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+                <ScalarProperty Name="TipoRecurso" ColumnName="TipoRecurso" />
                 <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
                 <ScalarProperty Name="EsPrincipal" ColumnName="EsPrincipal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DVD">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.DVD">
+              <MappingFragment StoreEntitySet="DVD">
+                <ScalarProperty Name="IdDVD" ColumnName="IdDVD" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
+                <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Editorial">
-            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Editorial">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Editorial">
               <MappingFragment StoreEntitySet="Editorial">
                 <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Enciclopedia">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Enciclopedia">
+              <MappingFragment StoreEntitySet="Enciclopedia">
+                <ScalarProperty Name="IdEnciclopedia" ColumnName="IdEnciclopedia" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
+                <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libro">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Libro">
+              <MappingFragment StoreEntitySet="Libro">
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
+                <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Pais">
-            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Pais">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Pais">
               <MappingFragment StoreEntitySet="Pais">
                 <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Recurso">
-            <EntityTypeMapping TypeName="Biblioteca_MetropolisModel.Recurso">
-              <MappingFragment StoreEntitySet="Recurso">
-                <ScalarProperty Name="IdRec" ColumnName="IdRec" />
+          <EntitySetMapping Name="Revista">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Revista">
+              <MappingFragment StoreEntitySet="Revista">
+                <ScalarProperty Name="IdRevista" ColumnName="IdRevista" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
                 <ScalarProperty Name="IdEdit" ColumnName="IdEdit" />
                 <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tesis">
+            <EntityTypeMapping TypeName="Biblioteca_Metropolis_newModel.Tesis">
+              <MappingFragment StoreEntitySet="Tesis">
+                <ScalarProperty Name="IdTesis" ColumnName="IdTesis" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="AnnoPublic" ColumnName="AnnoPublic" />
+                <ScalarProperty Name="InstitucionEducativa" ColumnName="InstitucionEducativa" />
                 <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="PalabraBusqueda" ColumnName="PalabraBusqueda" />
               </MappingFragment>
