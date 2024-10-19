@@ -3,10 +3,112 @@
 }
 
 <div class="home-container">
-    <h1>Biblioteca Metropolis</h1>
-    <img src="~/Content/img/biblioteca.jpeg"/>
-    <p>Utiliza el menú superior para navegar.</p>
+    <h1>Biblioteca Metrópolis</h1>
+    <img src="~/Content/img/biblioteca.jpeg" alt="Imagen de la Biblioteca Metrópolis" class="img-fluid" />
+    <p class="intro-text">Explora nuestra colección de materiales bibliográficos y utiliza el menú superior para navegar por el sistema.</p>
+
+    <section class="about-section">
+        <h2>Acerca de la Biblioteca</h2>
+        <p>
+            Ubicada en Alajuela, Costa Rica, la <strong>Biblioteca Metrópolis</strong> se dedica a brindar acceso a una amplia variedad
+            de materiales bibliográficos. Nuestro sistema permite el registro y gestión de adquisiciones, incluyendo libros,
+            enciclopedias, revistas, tesis y DVD's, proporcionando un recurso esencial para la comunidad.
+        </p>
+    </section>
+
+    <section class="requirements-section">
+        <h2>Requisitos para el Registro de Materiales</h2>
+        <p>
+            Para cada tipo de material registrado, el sistema garantiza un nivel de detalle adecuado en la información proporcionada.
+            Los materiales como libros, enciclopedias y revistas requieren información específica, incluyendo su título, autor o
+            autores, año de publicación, casa editorial, número de edición, país y, opcionalmente, ciudad. Además, se debe especificar
+            la cantidad de unidades compradas y el precio individual.
+        </p>
+        <p>
+            Es importante destacar que cada material puede ser escrito por múltiples autores, con la condición de que solo uno sea
+            designado como autor principal. En el caso de las tesis, en lugar de una editorial, se registrará la institución educativa
+            que la autorizó.
+        </p>
+        <p>
+            Para facilitar la búsqueda en el sistema, los recursos se pueden categorizar mediante palabras claves y etiquetas como
+            "filosofía", "gastroenterología" o "cálculo diferencial".
+        </p>
+    </section>
+
+    <section class="search-section">
+        <h2>Consultas Disponibles</h2>
+        <p>
+            El sistema proporciona herramientas avanzadas para la búsqueda y filtrado de materiales:
+        </p>
+        <p>
+            <strong>Pantalla de búsqueda de recursos:</strong> permite a los empleados localizar materiales mediante la combinación
+            de hasta cuatro criterios, tales como autor, palabras claves, editorial y otros campos específicos.
+        </p>
+        <p>
+            <strong>Lista de materiales disponibles:</strong> ofrece la opción de filtrar los materiales por tipo, ya sea libros,
+            enciclopedias, revistas, tesis o DVD's, y ajustar la búsqueda por antigüedad de hasta 10 años, garantizando que los
+            resultados sean relevantes.
+        </p>
+    </section>
 </div>
-<footer>
+
+<footer class="footer">
     &copy; 2024 Biblioteca Metrópolis
 </footer>
+
+<style>
+    .home-container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border: 3px solid #0038a8; /* Azul de la bandera de Costa Rica */
+    }
+
+        .home-container h1 {
+            font-size: 2.5em;
+            color: #ce1126; /* Rojo de la bandera */
+        }
+
+        .home-container .intro-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #0038a8; /* Azul de la bandera */
+        }
+
+    .about-section, .requirements-section, .search-section {
+        margin-top: 30px;
+        text-align: left;
+    }
+
+        .about-section h2, .requirements-section h2, .search-section h2 {
+            font-size: 1.8em;
+            color: #ce1126; /* Rojo de la bandera */
+            border-bottom: 2px solid #0038a8; /* Azul de la bandera */
+            padding-bottom: 5px;
+        }
+
+        .about-section p, .requirements-section p, .search-section p {
+            color: #333333;
+        }
+
+    .footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #ffffff;
+        background-color: #ce1126; /* Rojo de la bandera */
+        padding: 10px;
+        border-top: 3px solid #0038a8; /* Azul de la bandera */
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid #0038a8; /* Azul de la bandera */
+
+    }
+</style>

@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Biblioteca </title>
+    <title>@ViewBag.Title Biblioteca Metropolis </title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/inicio.css" rel="stylesheet" />
+    <link href="~/Content/wwwroot/css/site.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
-                <li><a href="@Url.Action("Registrar", "Libro")">Libros</a></li>
-                <li><a href="@Url.Action("enciclopedia", "Enciclopedia")">Enciclopedias</a></li>
-                <li><a href="@Url.Action("revista", "Revistas")">Revistas</a></li>
-                <li><a href="@Url.Action("Registro", "Tesis")">Tesis</a></li>
-                <li><a href="@Url.Action("discos", "DVD")">DVD'S</a></li>
+                <li><a href="@Url.Action("index", "Libroes")">Libros</a></li>
+                <li><a href="@Url.Action("index", "Enciclopedias")">Enciclopedias</a></li>
+                <li><a href="@Url.Action("index", "Revistas1")">Revistas</a></li>
+                <li><a href="@Url.Action("index", "Tesis1")">Tesis</a></li>
+                <li><a href="@Url.Action("index", "DVDs")">DVD'S</a></li>
+                <li><a href="@Url.Action("index", "AutoresRecursos")">Autores</a></li>
             </ul>
         </nav>
     </header>
