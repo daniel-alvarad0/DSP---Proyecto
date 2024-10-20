@@ -1,0 +1,155 @@
+﻿@model List<BibliotecaMetropolis.ViewModels.RecursosMostrar>
+
+@{
+    ViewBag.Title = "Buscar un recurso";
+}
+
+<div class="mt-5 mx-5 ">
+    <h1 class="text-center mb-4">Buscar un recurso</h1>
+    <div class="row">
+        <div class="col-lg-4">
+            @using (Html.BeginForm("BuscarRecurso", "Buscar", FormMethod.Post))
+            {
+                <div>
+                    <h6>Seleccione el tipo de recurso</h6>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="todos" name="tipoRecurso" value="" checked />
+                        <label for="todos" class="form-label lblform">Todos</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="libro" name="tipoRecurso" value="Libro" />
+                        <label for="libro" class="form-label lblform">Libro</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="enciclopedia" name="tipoRecurso" value="Enciclopedia" />
+                        <label for="enciclopedia" class="form-label lblform">Enciclopedia</label>
+
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="revista" name="tipoRecurso" value="Revista" />
+                        <label for="revista" class="form-label lblform">Revista</label>
+
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="tesis" name="tipoRecurso" value="Tesis" />
+                        <label for="tesis" class="form-label lblform">Tesis</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline" id="dvd" name="tipoRecurso" value="DVD" />
+                        <label for="dvd" class="form-label lblform">DVD</label>
+                    </div>
+                </div>
+                <div>
+                    <h6>Seleccione la antiguedad del recurso</h6>
+                    <div>
+                        <input type="radio" class="form-check-inline annios" name="antiguedad" checked />
+                        <label class="form-label lblform">Desde siempre</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline annios" value="1" name="antiguedad" />
+                        <label class="form-label lblform">1 año</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline annios" value="5" name="antiguedad" />
+                        <label class="form-label lblform">5 años</label>
+
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline annios" value="10" name="antiguedad" />
+                        <label class="form-label lblform">10 años</label>
+
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-inline " name="antiguedad" id="personalizarAntiguedad" />
+                        <label for="personalizarAntiguedad" class="lblform form-label">Personalizar</label>
+                        <input id="txtPersonalizar" type="number" class="form-control w-50 mb-1 lblform" max="10" min="1" disabled />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label class="form-label h6">Seleccione un autor</label>
+                        @Html.DropDownList("autor", (SelectList)ViewBag.Autores, "Todos", new
+                   {
+                       @class = "form-select lblform"
+                   })
+                    </div>
+                    <div class="mt-2">
+                        <label id="etiquetaOpciones" for="IdEdit" class="form-label  h6 ">
+                            Seleccione una editorial/institución:
+                        </label>
+                        @Html.DropDownList("editorial", (SelectList)ViewBag.Editoriales, "Todos", new
+                   {
+                       @class = "form-select lblform"
+                   })
+                    </div>
+                    <div class="mt-2">
+                        <label for="palabraClave" class="form-label h6">Ingrese una palabra clave</label>
+                        <input type="text" name="palabraClave" placeholder="Ej. Filosofía" id="palabraClave" class="form-control lblform" />
+                    </div>
+                    <div class="mt-2">
+                        <label for="pais" class="form-label  h6">País:</label>
+                        @Html.DropDownList("pais", (SelectList)ViewBag.Paises, "Todos", new
+                   {
+                       @class = "form-select lblform"
+                   })
+                    </div>
+                </div>
+                <div class="container mt-2 text-center">
+                    <button class="my-2 btn btn-primary py-2 px-4">Buscar</button>
+                </div>
+            }
+        </div>
+        <div class="col-lg-8">
+            <table class="table table-striped my-5 table-bordered">
+                <thead class="table-danger">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="col-3">Título</th>
+                        <th scope="col" class="col-1">Año de publicación</th>
+                        <th scope="col" class="col-1">Editorial</th>
+                        <th scope="col" class="col-1">Edicion</th>
+                        <th scope="col" class="col-1">País</th>
+                        <th scope="col" class="col-2">Autor Principal</th>
+                        <th scope="col" class="col-2">Autores Secundarios</th>
+                        <th scope="col" class="col-1">Palabras Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var recurso in Model)
+                        {
+                            <tr>
+                                <td>@recurso.IdRec</td>
+                                <td>@recurso.Titulo</td>
+                                <td>@recurso.AnnoPublic</td>
+                                <td>@recurso.Editorial</td>
+                                <td>@recurso.Edicion</td>
+                                <td>@recurso.Pais</td>
+                                <td>@recurso.AutorPrincipal</td>
+                                <td>
+                                    <ul>
+                                        @foreach (var autorsecundario in recurso.AutoresSecundarios)
+                                        {
+                                            <li>@autorsecundario</li>
+                                        }
+                                    </ul>
+                                </td>
+                                <td>@recurso.PalabrasClave</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="12" class="text-center">No hay resultados que coincidan con su búsqueda</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

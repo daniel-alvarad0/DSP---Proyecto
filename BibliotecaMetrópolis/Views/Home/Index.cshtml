@@ -57,58 +57,96 @@
 </footer>
 
 <style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif; /* Tipografía moderna */
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #333;
+    }
+
     .home-container {
-        max-width: 800px;
-        margin: 0 auto;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #ce1126; /* Rojo bandera */
+        margin-bottom: 20px;
         text-align: center;
-        padding: 20px;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border: 3px solid #0038a8; /* Azul de la bandera de Costa Rica */
     }
 
-        .home-container h1 {
-            font-size: 2.5em;
-            color: #ce1126; /* Rojo de la bandera */
-        }
-
-        .home-container .intro-text {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #0038a8; /* Azul de la bandera */
-        }
-
-    .about-section, .requirements-section, .search-section {
-        margin-top: 30px;
-        text-align: left;
+    .intro-text {
+        font-size: 1.4em;
+        color: #0038a8; /* Azul bandera */
+        text-align: center;
+        margin-bottom: 40px;
     }
 
-        .about-section h2, .requirements-section h2, .search-section h2 {
-            font-size: 1.8em;
-            color: #ce1126; /* Rojo de la bandera */
-            border-bottom: 2px solid #0038a8; /* Azul de la bandera */
-            padding-bottom: 5px;
-        }
+    section {
+        margin: 50px 0;
+        padding: 0;
+    }
 
-        .about-section p, .requirements-section p, .search-section p {
-            color: #333333;
-        }
+    section h2 {
+        font-size: 2.2em;
+        color: #ce1126; /* Rojo bandera */
+        margin-bottom: 15px;
+        border-bottom: 2px solid #0038a8; /* Línea subrayado azul */
+        padding-bottom: 10px;
+    }
 
-    .footer {
-        margin-top: 30px;
-        font-size: 0.9em;
-        color: #ffffff;
-        background-color: #ce1126; /* Rojo de la bandera */
-        padding: 10px;
-        border-top: 3px solid #0038a8; /* Azul de la bandera */
+    section p {
+        font-size: 1.2em;
+        color: #4a4a4a;
+        margin-bottom: 20px;
     }
 
     .img-fluid {
         max-width: 100%;
         height: auto;
-        border-radius: 8px;
-        border: 2px solid #0038a8; /* Azul de la bandera */
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: none; /* Sin borde */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .footer {
+        margin-top: 50px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #ce1126; /* Rojo bandera */
+        padding: 20px 0;
+        text-align: center;
+        border-top: 3px solid #0038a8; /* Línea superior */
+    }
+
+    /* Media Queries para pantallas más pequeñas */
+ 
+
+        h1 {
+            font-size: 2.4em;
+        }
+
+        .intro-text {
+            font-size: 1.2em;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+        }
+
+        section p {
+            font-size: 1em;
+        }
+
+        .footer {
+            font-size: 0.9em;
+        }
     }
 </style>

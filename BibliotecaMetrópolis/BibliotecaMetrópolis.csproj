@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Controllers\AutoresRecursosController.cs" />
     <Compile Include="Controllers\AutorsController.cs" />
+    <Compile Include="Controllers\BuscarController.cs" />
     <Compile Include="Controllers\DVDController.cs" />
     <Compile Include="Controllers\DVDsController.cs" />
     <Compile Include="Controllers\EditorialsController.cs" />
@@ -189,6 +190,13 @@
     <Compile Include="Tesis.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\IRecurso.cs" />
+    <Compile Include="ViewModels\RecursoBase.cs" />
+    <Compile Include="ViewModels\RecursoMostrar.cs" />
+    <Compile Include="ViewModels\Repository\AutorRepository.cs" />
+    <Compile Include="ViewModels\Repository\EditorialRepository.cs" />
+    <Compile Include="ViewModels\Repository\PaisRepository.cs" />
+    <Compile Include="ViewModels\Repository\RecursoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -262,6 +270,7 @@
     <Content Include="Views\Tesis1\Details.cshtml" />
     <Content Include="Views\Tesis1\Edit.cshtml" />
     <Content Include="Views\Tesis1\Index.cshtml" />
+    <Content Include="Views\Buscar\BuscarRecurso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -271,7 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Busqueda\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

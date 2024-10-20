@@ -16,9 +16,10 @@ namespace BibliotecaMetrópolis.Controllers
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
         // GET: Libroes
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(String Buscar)
         {
             var libro = db.Libro.Include(l => l.Editorial).Include(l => l.Pais);
+            
             return View(await libro.ToListAsync());
         }
 
