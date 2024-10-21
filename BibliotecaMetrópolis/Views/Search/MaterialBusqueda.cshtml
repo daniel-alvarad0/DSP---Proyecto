@@ -1,0 +1,54 @@
+﻿@model BibliotecaMetropolis.Models.SearchViewModel
+@{
+    ViewBag.Title = "Búsqueda de Materiales - Biblioteca Metrópolis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Búsqueda de Materiales - Biblioteca Metrópolis</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SearchText, "Búsqueda:")
+        @Html.TextBoxFor(m => m.SearchText, new { @class = "form-control", placeholder = "Título, Autor o Palabra Clave" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Tipo, "Tipo:")
+        @Html.DropDownListFor(m => m.Tipo, new SelectList(new[] { "Todos", "Libro", "Enciclopedia", "Revista", "Tesis", "DVD" }), new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anno, "Año:")
+        @Html.TextBoxFor(m => m.Anno, new { @class = "form-control", type = "number", placeholder = "Año de publicación" })
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+}
+@if (Model.Results != null && Model.Results.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Tipo</th>
+                <th>Año de Publicación</th>
+                <th>Editorial/Institución</th>
+                <th>Palabras Clave</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td>@item.Titulo</td>
+                    <td>@item.Autor</td>
+                    <td>@item.Tipo</td>
+                    <td>@item.AnnoPublicacion</td>
+                    <td>@(item.Editorial ?? item.Institucion)</td>
+                    <td>@string.Join(", ", item.PalabrasClave)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron resultados.</p>
+}

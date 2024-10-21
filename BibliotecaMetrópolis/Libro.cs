@@ -12,7 +12,7 @@ namespace BibliotecaMetrópolis
     using System;
     using System.Collections.Generic;
     
-    public partial class Libro 
+    public partial class Libro
     {
         public int IdLibro { get; set; }
         public string Titulo { get; set; }
@@ -25,5 +25,4 @@ namespace BibliotecaMetrópolis
         public virtual Editorial Editorial { get; set; }
         public virtual Pais Pais { get; set; }
     }
-
 }
