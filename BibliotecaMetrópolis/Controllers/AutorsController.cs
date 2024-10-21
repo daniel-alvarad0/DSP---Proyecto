@@ -9,6 +9,14 @@ using System.Web;
 using System.Web.Mvc;
 using BibliotecaMetrópolis;
 
+
+//Creadores del Poryecto
+//Jeremy Edenilson Flores Portillo - FP240479
+//Daniel Ernesto Alvarado Roque - AR220441
+//Edgar Josué Gómez Meléndez - GM240279
+//Lucía Milena Hernández Bonilla - HB221258
+
+
 namespace BibliotecaMetrópolis.Controllers
 {
     public class AutorsController : Controller

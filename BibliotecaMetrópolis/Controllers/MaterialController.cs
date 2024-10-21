@@ -6,6 +6,13 @@ using BibliotecaMetropolis.Models;
 
 namespace BibliotecaMetropolis.Controllers
 {
+
+    //Creadores del Poryecto
+    //Jeremy Edenilson Flores Portillo - FP240479
+    //Daniel Ernesto Alvarado Roque - AR220441
+    //Edgar Josué Gómez Meléndez - GM240279
+    //Lucía Milena Hernández Bonilla - HB221258
+
     public class SearchController : Controller
     {
         private List<Material> _materials;
@@ -19,7 +26,7 @@ namespace BibliotecaMetropolis.Controllers
         {
             _materials = new List<Material>
             {
-                new Material { Id = 1, Titulo = "Cien años de soledad", Autor = "Gabriel García Márquez", Tipo = "Libro", AnnoPublicacion = 1967, Editorial = "Sudamericana", PalabrasClave = new List<string> { "realismo mágico", "literatura latinoamericana" } },
+                new Material { Id = 1, Titulo = "Harry Poter", Autor = "Daniel", Tipo = "Libro", AnnoPublicacion = 2015, Editorial = "Jordan", PalabrasClave = new List<string> { "Don Bosco" } },
                 new Material { Id = 2, Titulo = "El señor de los anillos", Autor = "J.R.R. Tolkien", Tipo = "Libro", AnnoPublicacion = 1954, Editorial = "Allen & Unwin", PalabrasClave = new List<string> { "fantasía", "aventura" } },
                 new Material { Id = 3, Titulo = "National Geographic", Autor = "Various", Tipo = "Revista", AnnoPublicacion = 2023, Editorial = "National Geographic Society", PalabrasClave = new List<string> { "naturaleza", "ciencia", "fotografía" } },
                 new Material { Id = 4, Titulo = "Análisis del impacto ambiental en Costa Rica", Autor = "María Rodríguez", Tipo = "Tesis", AnnoPublicacion = 2022, Institucion = "Universidad de Costa Rica", PalabrasClave = new List<string> { "medio ambiente", "sostenibilidad" } },

@@ -5,6 +5,14 @@ using System.Web;
 
 namespace BibliotecaMetropolis.Models
 {
+
+    //Creadores del Poryecto
+    //Jeremy Edenilson Flores Portillo - FP240479
+    //Daniel Ernesto Alvarado Roque - AR220441
+    //Edgar Josué Gómez Meléndez - GM240279
+    //Lucía Milena Hernández Bonilla - HB221258
+
+
     public class Material
     {
         public int Id { get; set; }

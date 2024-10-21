@@ -133,20 +133,15 @@
     </Compile>
     <Compile Include="Controllers\AutoresRecursosController.cs" />
     <Compile Include="Controllers\AutorsController.cs" />
-    <Compile Include="Controllers\DVDController.cs" />
     <Compile Include="Controllers\DVDsController.cs" />
     <Compile Include="Controllers\EditorialsController.cs" />
-    <Compile Include="Controllers\EnciclopediaController.cs" />
     <Compile Include="Controllers\EnciclopediasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\LibroesController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\Revistas1Controller.cs" />
-    <Compile Include="Controllers\RevistasController.cs" />
     <Compile Include="Controllers\Tesis1Controller.cs" />
-    <Compile Include="Controllers\TesisController.cs" />
     <Compile Include="DVD.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -274,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BuscarMaterial\" />
     <Folder Include="Views\Busqueda\" />
     <Folder Include="Views\Material\" />
   </ItemGroup>
