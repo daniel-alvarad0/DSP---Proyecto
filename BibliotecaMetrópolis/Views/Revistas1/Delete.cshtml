@@ -1,72 +1,81 @@
 ﻿@model BibliotecaMetrópolis.Revista
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar";
 }
 
-<h2>Borrar</h2>
+<h2>Eliminar</h2>
 
-<h3>¿Estás seguro de que quieres eliminar esto?</h3>
+<h3>¿Estás seguro de que deseas eliminar esto?</h3>
 <div>
-    <h4>Revistas</h4>
+    <h4>Revista</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Titulo)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.AnnoPublic)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.AnnoPublic)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Edicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Edicion)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.PalabraBusqueda)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PalabraBusqueda)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Editorial.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Editorial.Nombre)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Pais.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Pais.Nombre)
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AnnoPublic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AnnoPublic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Edicion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Edicion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PalabraBusqueda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PalabraBusqueda)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Editorial.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Editorial.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pais.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pais.Nombre)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar", "Index")
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-secondary" })
         </div>
     }
 </div>

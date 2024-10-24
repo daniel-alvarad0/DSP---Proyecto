@@ -172,6 +172,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\autoress.cs" />
+    <Compile Include="Models\dvdss.cs" />
+    <Compile Include="Models\editorialess.cs" />
+    <Compile Include="Models\enciclopediass.cs" />
+    <Compile Include="Models\libross.cs" />
+    <Compile Include="Models\paiss.cs" />
+    <Compile Include="Models\revistass.cs" />
+    <Compile Include="Models\tesis.cs" />
     <Compile Include="Pais.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
