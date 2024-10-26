@@ -23,14 +23,12 @@ namespace BibliotecaMetrópolis.Controllers
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: AutoresRecursos
         public async Task<ActionResult> Index()
         {
             var autoresRecursos = db.AutoresRecursos.Include(a => a.Autor);
             return View(await autoresRecursos.ToListAsync());
         }
 
-        // GET: AutoresRecursos/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,17 +42,12 @@ namespace BibliotecaMetrópolis.Controllers
             }
             return View(autoresRecursos);
         }
-
-        // GET: AutoresRecursos/Create
         public ActionResult Create()
         {
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre");
             return View();
         }
 
-        // POST: AutoresRecursos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdRecAutor,IdRecurso,TipoRecurso,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
@@ -69,8 +62,6 @@ namespace BibliotecaMetrópolis.Controllers
             ViewBag.IdAutor = new SelectList(db.Autor, "IdAutor", "Nombre", autoresRecursos.IdAutor);
             return View(autoresRecursos);
         }
-
-        // GET: AutoresRecursos/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +77,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autoresRecursos);
         }
 
-        // POST: AutoresRecursos/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "IdRecAutor,IdRecurso,TipoRecurso,IdAutor,EsPrincipal")] AutoresRecursos autoresRecursos)
@@ -103,7 +92,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autoresRecursos);
         }
 
-        // GET: AutoresRecursos/Delete/5
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,7 +107,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autoresRecursos);
         }
 
-        // POST: AutoresRecursos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

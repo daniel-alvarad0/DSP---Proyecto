@@ -23,14 +23,12 @@ namespace BibliotecaMetrópolis.Controllers
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Enciclopedias
         public async Task<ActionResult> Index()
         {
             var enciclopedia = db.Enciclopedia.Include(e => e.Editorial).Include(e => e.Pais);
             return View(await enciclopedia.ToListAsync());
         }
 
-        // GET: Enciclopedias/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,7 +43,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(enciclopedia);
         }
 
-        // GET: Enciclopedias/Create
         public ActionResult Create()
         {
             ViewBag.IdEdit = new SelectList(db.Editorial, "IdEdit", "Nombre");
@@ -53,9 +50,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View();
         }
 
-        // POST: Enciclopedias/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdEnciclopedia,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Enciclopedia enciclopedia)
@@ -72,7 +67,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(enciclopedia);
         }
 
-        // GET: Enciclopedias/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,9 +83,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(enciclopedia);
         }
 
-        // POST: Enciclopedias/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "IdEnciclopedia,Titulo,AnnoPublic,IdEdit,Edicion,IdPais,PalabraBusqueda")] Enciclopedia enciclopedia)
@@ -107,7 +98,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(enciclopedia);
         }
 
-        // GET: Enciclopedias/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,7 +112,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(enciclopedia);
         }
 
-        // POST: Enciclopedias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

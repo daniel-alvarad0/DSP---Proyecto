@@ -16,7 +16,6 @@ namespace BibliotecaMetrópolis.Controllers
         //Lucía Milena Hernández Bonilla - HB221258
 
 
-        // GET: Home/Index
         public ActionResult Index()
         {
             return View();

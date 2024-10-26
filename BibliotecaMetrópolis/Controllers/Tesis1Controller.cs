@@ -23,14 +23,13 @@ namespace BibliotecaMetrópolis.Controllers
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Tesis1
         public async Task<ActionResult> Index()
         {
             var tesis = db.Tesis.Include(t => t.Pais);
             return View(await tesis.ToListAsync());
         }
 
-        // GET: Tesis1/Details/5
+      
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,16 +44,13 @@ namespace BibliotecaMetrópolis.Controllers
             return View(tesis);
         }
 
-        // GET: Tesis1/Create
+     
         public ActionResult Create()
         {
             ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre");
             return View();
         }
 
-        // POST: Tesis1/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdTesis,Titulo,AnnoPublic,InstitucionEducativa,IdPais,PalabraBusqueda")] Tesis tesis)
@@ -70,7 +66,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View(tesis);
         }
 
-        // GET: Tesis1/Edit/5
+  
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +82,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View(tesis);
         }
 
-        // POST: Tesis1/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "IdTesis,Titulo,AnnoPublic,InstitucionEducativa,IdPais,PalabraBusqueda")] Tesis tesis)
@@ -103,7 +97,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(tesis);
         }
 
-        // GET: Tesis1/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,7 +111,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(tesis);
         }
 
-        // POST: Tesis1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

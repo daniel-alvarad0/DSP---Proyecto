@@ -23,13 +23,12 @@ namespace BibliotecaMetrópolis.Controllers
     {
         private Biblioteca_Metropolis_newEntities db = new Biblioteca_Metropolis_newEntities();
 
-        // GET: Autors
+
         public async Task<ActionResult> Index()
         {
             return View(await db.Autor.ToListAsync());
         }
 
-        // GET: Autors/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,15 +43,11 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autor);
         }
 
-        // GET: Autors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Autors/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdAutor,Nombre,Apellido")] Autor autor)
@@ -67,7 +62,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autor);
         }
 
-        // GET: Autors/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,9 +76,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autor);
         }
 
-        // POST: Autors/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "IdAutor,Nombre,Apellido")] Autor autor)
@@ -98,7 +89,6 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autor);
         }
 
-        // GET: Autors/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -113,7 +103,7 @@ namespace BibliotecaMetrópolis.Controllers
             return View(autor);
         }
 
-        // POST: Autors/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
